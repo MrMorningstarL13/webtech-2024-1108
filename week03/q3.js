@@ -1,11 +1,10 @@
-const formatStringObj = (template, ...formatObject) => {
+const formatStringObj = (template, formatObject) => {
     let modified = template
 
-    for(let attribute in formatObject){
-        if(modified.indexOf('{' + attribute + '}')!== -1){
-            modified=modified.replace('{' + attribute + '}', attribute)
-        }
-    }
+    Object.keys(formatObject).forEach((key)=>{
+        let placeholder = `{${key}}`;
+        modified=modified.split(placeholder).join(formatObject[key])
+    })
 
     return modified
 }
