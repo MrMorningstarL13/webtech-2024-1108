@@ -1,18 +1,22 @@
-const text = "javascript is wonderful"
-const dictionary = ['javascript']
+const text = "javascript is wonderful but fuck me it is retarded";
+const dictionary = ["retarded", "fuck"];
 
-const censor = (txt, dict) => {
-    const candidates = text.split(" ")
+const censor = (text, dict) => {
+    const candidates = text.split(" ");
 
-    for(let i=0;i<candidates.length;i++){
-        if(candidates[i]===dict[i]){
-            let firstLetter = candidates[i].slice(0,1)
-            let lastLetter = candidates[i].slice(0,-1)
-            let censorGrade = candidates.length
-            candidates[i]=firstLetter+ "*".repeat(censorGrade) +lastLetter
+    for (let i = 0; i < candidates.length; i++) {
+        for (let j = 0; j < dict.length; j++) {
+            console.log(dict.size)
+
+            if (candidates[i] === dict[j]) {
+                let firstLetter = candidates[i].slice(0, 1);
+                let lastLetter = candidates[i].slice(-1);
+                let censorGrade = candidates[i].length - 2;
+                candidates[i] = firstLetter + "*".repeat(censorGrade) + lastLetter;
+            }
         }
     }
-    return candidates.join(" ")
-}
+    return candidates.join(" ");
+};
 
-console.log(censor(text, dictionary))
+console.log(censor(text, dictionary));
